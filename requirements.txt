@@ -9,7 +9,7 @@ pyyaml
 werkzeug==2.2.3
 webencodings
 gevent==25.5.1
-greenlet>=3.2.2
+greenlet==3.2.4
 webassets==2.0
 portalocker
 wsgiprox>=1.5.1

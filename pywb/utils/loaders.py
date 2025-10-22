@@ -287,10 +287,6 @@ class PackageLoader(BaseLoader):
         buff.name = url
         return buff
 
-        # afile = pkg_resources.resource_stream(pkg_split[0],
-        #                                      pkg_split[1])
-
-
 # =================================================================
 class LocalFileLoader(PackageLoader):
     def load(self, url, offset=0, length=-1):

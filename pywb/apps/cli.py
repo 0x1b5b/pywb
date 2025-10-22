@@ -2,13 +2,13 @@ from gevent.monkey import patch_all; patch_all()
 from argparse import ArgumentParser
 
 import logging
-import pkg_resources
+import importlib.metadata
 
 
 #=============================================================================
 def get_version():
     """Get version of the pywb"""
-    return "pywb " + pkg_resources.get_distribution("pywb").version
+    return "pywb " + importlib.metadata.version("pywb")
 
 
 #=============================================================================

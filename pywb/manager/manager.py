@@ -10,7 +10,8 @@ import six
 import pathlib
 
 from distutils.util import strtobool
-from pkg_resources import resource_string, get_distribution
+import importlib.resources
+import importlib.metadata
 
 from argparse import ArgumentParser, RawTextHelpFormatter
 from tempfile import mkdtemp, TemporaryDirectory
@@ -34,7 +35,7 @@ def get_input(msg):  # pragma: no cover
 #=============================================================================
 def get_version():
     """Get version of the pywb"""
-    return "wb-manager " + get_distribution("pywb").version
+    return "wb-manager " + importlib.metadata.version("pywb")
 
 
 #=============================================================================
@@ -419,7 +420,7 @@ directory structure expected by pywb
 
         os.makedirs(os.path.dirname(full_path), exist_ok=True)
 
-        data = resource_string('pywb', filename)
+        data = importlib.resources.files('pywb').joinpath(filename).read_bytes()
         with open(full_path, 'w+b') as fh:
             fh.write(data)
 

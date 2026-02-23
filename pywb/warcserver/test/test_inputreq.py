@@ -4,8 +4,6 @@ from werkzeug.routing import Map, Rule
 import webtest
 from six.moves.urllib.parse import parse_qsl
 from io import BytesIO
-from pyamf import AMF3
-from pyamf.remoting import Request, Envelope, encode
 
 
 #=============================================================================
@@ -170,17 +168,3 @@ class TestPostQueryExtract(object):
     def test_head(self):
         mq = MethodQueryCanonicalizer('HEAD', '', 0, BytesIO())
         assert mq.append_query('http://example.com/') == 'http://example.com/?__wb_method=HEAD'
-
-    def test_amf_parse(self):
-        mq = MethodQueryCanonicalizer('POST', 'application/x-amf', 0, BytesIO())
-
-        req = Request(target='t', body="")
-        ev_1 = Envelope(AMF3)
-        ev_1['/0'] = req
-
-        req = Request(target='t', body="alt_content")
-        ev_2 = Envelope(AMF3)
-        ev_2['/0'] = req
-
-        assert mq.amf_parse(encode(ev_1).getvalue(), None) != \
-               mq.amf_parse(encode(ev_2).getvalue(), None)

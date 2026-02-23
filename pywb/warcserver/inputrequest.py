@@ -1,7 +1,5 @@
 from warcio.limitreader import LimitReader
 from warcio.statusandheaders import StatusAndHeadersParser
-from pywb.warcserver.amf import Amf
-from pyamf.remoting import decode
 from warcio.utils import to_native_str
 
 from six.moves.urllib.parse import urlsplit, quote, unquote_plus, urlencode
@@ -272,9 +270,6 @@ class MethodQueryCanonicalizer(object):
 
                 query = urlencode(values, True)
 
-        elif mime.startswith('application/x-amf'):
-            query = self.amf_parse(query, environ)
-
         elif mime.startswith('application/json'):
             try:
                 query = self.json_parse(query)
@@ -293,17 +288,6 @@ class MethodQueryCanonicalizer(object):
 
         if query:
             self.query = query[:self.MAX_QUERY_LENGTH]
-
-    def amf_parse(self, string, warn_on_error):
-        try:
-            res = decode(BytesIO(string))
-            return urlencode({"request": Amf.get_representation(res)})
-
-        except Exception as e:
-            import traceback
-            traceback.print_exc()
-            print(e)
-            return None
 
     def json_parse(self, string):
         data = {}

@@ -165,12 +165,12 @@ class HTMLRewriterMixin(StreamingRewriter):
         self.has_base = False
 
     # ===========================
-    META_REFRESH_REGEX = re.compile('^[\\d.]+\\s*;\\s*url\\s*=\\s*(.+?)\\s*$',
+    META_REFRESH_REGEX = re.compile(r'^[\\d.]+\\s*;\\s*url\\s*=\\s*(.+?)\\s*$',
                                     re.IGNORECASE | re.MULTILINE)
 
-    ADD_WINDOW = re.compile('(?<![.])(WB_wombat_)')
+    ADD_WINDOW = re.compile(r'(?<![.])(WB_wombat_)')
 
-    SRCSET_REGEX = re.compile('\s*(\S*\s+[\d\.]+[wx]),|(?:\s*,(?:\s+|(?=https?:)))')
+    SRCSET_REGEX = re.compile(r'\s*(\S*\s+[\d\.]+[wx]),|(?:\s*,(?:\s+|(?=https?:)))')
 
     def _rewrite_srcset(self, value, mod=''):
         if not value:
@@ -584,7 +584,7 @@ class HTMLRewriterMixin(StreamingRewriter):
 
 #=================================================================
 class HTMLRewriter(HTMLRewriterMixin, HTMLParser):
-    PARSETAG = re.compile('[<]')
+    PARSETAG = re.compile(r'[<]')
 
     def __init__(self, *args, **kwargs):
         if sys.version_info > (3,4):  #pragma: no cover

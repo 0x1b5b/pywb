@@ -93,15 +93,15 @@ class BaseWbUrl(object):
 class WbUrl(BaseWbUrl):
     # Regexs
     # ======================
-    QUERY_REGEX = re.compile('^(?:([\w\-:]+)/)?(\d*)[*-](\d*)/?(.+)$')
-    REPLAY_REGEX = re.compile('^(\d*)([a-z]+_|[$][a-z0-9:.-]+)?/{1,3}(.+)$')
+    QUERY_REGEX = re.compile(r'^(?:([\w\-:]+)/)?(\d*)[*-](\d*)/?(.+)$')
+    REPLAY_REGEX = re.compile(r'^(\d*)([a-z]+_|[$][a-z0-9:.-]+)?/{1,3}(.+)$')
     #LATEST_REPLAY_REGEX = re.compile('^\w_)')
 
     DEFAULT_SCHEME = 'http://'
 
-    FIRST_PATH = re.compile('(?<![:/])[/?](?![/])')
+    FIRST_PATH = re.compile(r'(?<![:/])[/?](?![/])')
 
-    SCHEME_RX = re.compile('[a-zA-Z0-9+-.]+(:/)')
+    SCHEME_RX = re.compile(r'[a-zA-Z0-9+-.]+(:/)')
 
 
     @staticmethod

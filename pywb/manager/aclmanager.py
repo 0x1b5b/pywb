@@ -10,7 +10,7 @@ from pywb.warcserver.index.cdxobject import CDXObject
 
 # ============================================================================
 class ACLManager(CollectionsManager):
-    SURT_RX = re.compile('([^:.]+[,)])+')
+    SURT_RX = re.compile(r'([^:.]+[,)])+')
 
     VALID_ACCESS = ('allow', 'block', 'exclude', 'allow_ignore_embargo')
 

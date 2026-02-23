@@ -21,7 +21,7 @@ except ImportError:  # pragma: no cover
 
 #=================================================================
 class ArchiveIndexEntryMixin(object):
-    MIME_RE = re.compile('[; ]')
+    MIME_RE = re.compile(r'[; ]')
 
     def __init__(self):
         super(ArchiveIndexEntryMixin, self).__init__()

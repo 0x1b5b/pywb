@@ -18,7 +18,7 @@ class ExcludeSpecificHeaders(object):
 
 # ============================================================================
 class ExcludeHttpOnlyCookieHeaders(object):
-    HTTPONLY_RX = re.compile(';\\s*HttpOnly\\s*(;|$)', re.I)
+    HTTPONLY_RX = re.compile(r';\\s*HttpOnly\\s*(;|$)', re.I)
 
     def __call__(self, header):
         name = header[0].lower()

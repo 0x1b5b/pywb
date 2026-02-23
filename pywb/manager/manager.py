@@ -48,7 +48,7 @@ directory structure expected by pywb
     """
     DEF_INDEX_FILE = 'index.cdxj'
 
-    COLL_RX = re.compile('^[\w][-\w]*$')
+    COLL_RX = re.compile(r'^[\w][-\w]*$')
 
     COLLS_DIR = 'collections'
 

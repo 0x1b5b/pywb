@@ -279,7 +279,7 @@ class WbUrl(BaseWbUrl):
         self.type = self.REPLAY
 
     def deprefix_url(self, prefix):
-        rex_query = '=' + re.escape(prefix) + '([0-9])*([\w]{2}_)?/?'
+        rex_query = '=' + re.escape(prefix) + r'([0-9])*([\w]{2}_)?/?'
         self.url = re.sub(rex_query, '=', self.url)
 
         rex_query = '=(' + quote_plus(prefix) + '.*?)((?:https?%3A)?%2F%2F[^&]+)'
